@@ -56,65 +56,118 @@ public class Viewport{
 	
 	public void drawRect(Point2D.Double pos, double wi, double he, Color col, Graphics2D g){
 		Point coord = toScreenCoord(pos);
-		server.addToQueue(-3);
-		server.addToQueue(col.getRed());
-		server.addToQueue(col.getGreen());
-		server.addToQueue(col.getBlue());
-		server.addToQueue(coord.x);
-		server.addToQueue(coord.y);
-		server.addToQueue(scaleToScreen(wi));
-		server.addToQueue(scaleToScreen(he));
-		server.addToQueue(0);
-		server.addToQueue(0);
-		
-	}
+		int[] message = new int[]{-3,
+								col.getRed(),
+								col.getGreen(),
+								col.getBlue(),
+								coord.x,
+								coord.y,
+								scaleToScreen(wi),
+								scaleToScreen(he),
+								0,
+								0};
+		server.addToQueue(message);
+								
+		}
+//		server.addToQueue(-3);
+//		server.addToQueue(col.getRed());
+//		server.addToQueue(col.getGreen());
+//		server.addToQueue(col.getBlue());
+//		server.addToQueue(coord.x);
+//		server.addToQueue(coord.y);
+//		server.addToQueue(scaleToScreen(wi));
+//		server.addToQueue(scaleToScreen(he));
+//		server.addToQueue(0);
+//		server.addToQueue(0);
+//		
+	
 	
 	public void drawRectAbsolute(Point pos, int wi, int he, Color col, Graphics2D g){
-		server.addToQueue(-3);
-		server.addToQueue(col.getRed());
-		server.addToQueue(col.getGreen());
-		server.addToQueue(col.getBlue());
-		server.addToQueue(pos.x);
-		server.addToQueue(pos.y);
-		server.addToQueue(wi);
-		server.addToQueue(he);
-		server.addToQueue(0);
-		server.addToQueue(0);
-		
+		int[] message = new int[]{-3,
+				col.getRed(),
+				col.getGreen(),
+				col.getBlue(),
+				pos.x,
+				pos.y,
+				wi,
+				he,
+				0,
+				0};
+server.addToQueue(message);
+
+//		
+//		server.addToQueue(-3);
+//		server.addToQueue(col.getRed());
+//		server.addToQueue(col.getGreen());
+//		server.addToQueue(col.getBlue());
+//		server.addToQueue(pos.x);
+//		server.addToQueue(pos.y);
+//		server.addToQueue(wi);
+//		server.addToQueue(he);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
+//		
 	}
 	
 	public void drawCircle(Point2D.Double c, double r, Color col, Graphics2D g){
 		//g.setColor(col);
 		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
 		//g.fillOval(coord.x, coord.y, scaleToScreen(2*r), scaleToScreen(2*r));
-		server.addToQueue(-2);
-		server.addToQueue(col.getRed());
-		server.addToQueue(col.getGreen());
-		server.addToQueue(col.getBlue());
-		server.addToQueue(coord.x);
-		server.addToQueue(coord.y);
-		server.addToQueue(scaleToScreen(2*r));
-		server.addToQueue(scaleToScreen(2*r));
-		server.addToQueue(0);
-		server.addToQueue(0);
-		
+
+		int[] message = new int[]{-2,
+				col.getRed(),
+				col.getGreen(),
+				col.getBlue(),
+				coord.x,
+				coord.y,
+				scaleToScreen(2*r),
+				scaleToScreen(2*r),
+				0,
+				0};
+server.addToQueue(message);
+
+//		
+//		server.addToQueue(-2);
+//		server.addToQueue(col.getRed());
+//		server.addToQueue(col.getGreen());
+//		server.addToQueue(col.getBlue());
+//		server.addToQueue(coord.x);
+//		server.addToQueue(coord.y);
+//		server.addToQueue(scaleToScreen(2*r));
+//		server.addToQueue(scaleToScreen(2*r));
+//		server.addToQueue(0);
+//		server.addToQueue(0);
+//		
 	}
 	
 	public void drawCircleSector(Point2D.Double c, double r, double arcStart, double arcLen, Color col, Graphics2D g){
 		//g.setColor(col);
 		Point coord = toScreenCoord(new Point2D.Double(c.x-r, c.y-r));
 		//g.fillOval(coord.x, coord.y, scaleToScreen(2*r), scaleToScreen(2*r));
-		server.addToQueue(-4);
-		server.addToQueue(col.getRed());
-		server.addToQueue(col.getGreen());
-		server.addToQueue(col.getBlue());
-		server.addToQueue(coord.x);
-		server.addToQueue(coord.y);
-		server.addToQueue(scaleToScreen(2*r));
-		server.addToQueue(scaleToScreen(2*r));
-		server.addToQueue(-(int)(arcStart*180/Math.PI));
-		server.addToQueue(-(int)(arcLen*180/Math.PI));
+		int[] message = new int[]{-4,
+				col.getRed(),
+				col.getGreen(),
+				col.getBlue(),
+				coord.x,
+				coord.y,
+				scaleToScreen(2*r),
+				scaleToScreen(2*r),
+				-(int)(arcStart*180/Math.PI),
+				-(int)(arcLen*180/Math.PI)};
+server.addToQueue(message);
+
 		
+//		server.addToQueue(-4);
+//		server.addToQueue(col.getRed());
+//		server.addToQueue(col.getGreen());
+//		server.addToQueue(col.getBlue());
+//		server.addToQueue(coord.x);
+//		server.addToQueue(coord.y);
+//		server.addToQueue(scaleToScreen(2*r));
+//		server.addToQueue(scaleToScreen(2*r));
+//		server.addToQueue(-(int)(arcStart*180/Math.PI));
+//		server.addToQueue(-(int)(arcLen*180/Math.PI));
+//		
 	}
 	
 	public void drawCircleSprite(Point2D.Double c, double r, Animation a, Graphics2D g){
@@ -126,18 +179,34 @@ public class Viewport{
 			coord.x, coord.y, coord.x + scaleToScreen(2*r) - 1, coord.y + scaleToScreen(2*r) - 1,
 			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
 			null);*/
-		server.addToQueue(a.ss);
-		server.addToQueue(coord.x);
-		server.addToQueue(coord.y);
-		server.addToQueue(coord.x + scaleToScreen(2*r) - 1);
-		server.addToQueue(coord.y + scaleToScreen(2*r) - 1);
-		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
-		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
-		//server.addToQueue(a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1);
-		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
-		server.addToQueue(0);
-		server.addToQueue(0);
-		server.addToQueue(0);
+		
+		int[] message = new int[]{a.ss,
+				coord.x,
+				coord.y,
+				coord.x + scaleToScreen(2*r) - 1,
+				coord.y + scaleToScreen(2*r) - 1,
+				a.frame,
+				a.set,
+				0,
+				0,
+				0
+		};
+				
+server.addToQueue(message);
+
+		
+//		server.addToQueue(a.ss);
+//		server.addToQueue(coord.x);
+//		server.addToQueue(coord.y);
+//		server.addToQueue(coord.x + scaleToScreen(2*r) - 1);
+//		server.addToQueue(coord.y + scaleToScreen(2*r) - 1);
+//		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
+//		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+//		//server.addToQueue(a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1);
+//		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
 	}
 	
 	public void drawCircleSprite(Point2D.Double c, double r, Animation a, Graphics2D g, double angle){
@@ -149,15 +218,31 @@ public class Viewport{
 			coord.x, coord.y, coord.x + scaleToScreen(2*r) - 1, coord.y + scaleToScreen(2*r) - 1,
 			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
 			null);*/
-		server.addToQueue(a.ss);
-		server.addToQueue(coord.x);
-		server.addToQueue(coord.y);
-		server.addToQueue(coord.x + scaleToScreen(2*r) - 1);
-		server.addToQueue(coord.y + scaleToScreen(2*r) - 1);
-		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
-		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
-		//server.addToQueue(a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1);
-		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
+		
+
+		int[] message = new int[]{a.ss,
+				coord.x,
+				coord.y,
+				coord.x + scaleToScreen(2*r) - 1,
+				coord.y + scaleToScreen(2*r) - 1,
+				a.frame,
+				a.set,
+				0,
+				0,
+				0
+		};
+				
+server.addToQueue(message);
+		
+//		server.addToQueue(a.ss);
+//		server.addToQueue(coord.x);
+//		server.addToQueue(coord.y);
+//		server.addToQueue(coord.x + scaleToScreen(2*r) - 1);
+//		server.addToQueue(coord.y + scaleToScreen(2*r) - 1);
+//		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
+//		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+//		//server.addToQueue(a.ss.offsetW + a.ss.spriteW * (a.frame + 1) - 1);
+//		//server.addToQueue(a.ss.offsetH + a.ss.spriteH * (a.set + 1) - 1);
 	}
 	
 	
@@ -170,16 +255,31 @@ public class Viewport{
 			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,
 			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
 			null);*/
-		server.addToQueue(a.ss);
-		server.addToQueue(coord.x);
-		server.addToQueue(coord.y);
-		server.addToQueue(coord.x + scaleToScreen(dest.width) - 1);
-		server.addToQueue(coord.y + scaleToScreen(dest.height) - 1);
-		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
-		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
-		server.addToQueue(0);
-		server.addToQueue(0);
-		server.addToQueue(0);
+
+		int[] message = new int[]{a.ss,
+				coord.x,
+				coord.y,
+				coord.x + scaleToScreen(dest.width) - 1,
+				coord.y + scaleToScreen(dest.height) - 1,
+				a.frame,
+				a.set,
+				0,
+				0,
+				0
+		};
+				
+server.addToQueue(message);
+
+//		server.addToQueue(a.ss);
+//		server.addToQueue(coord.x);
+//		server.addToQueue(coord.y);
+//		server.addToQueue(coord.x + scaleToScreen(dest.width) - 1);
+//		server.addToQueue(coord.y + scaleToScreen(dest.height) - 1);
+//		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
+//		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
 	}
 	
 	public void drawSpriteAbsolute(Rectangle dest, Animation a, Graphics2D g){
@@ -190,16 +290,31 @@ public class Viewport{
 			coord.x, coord.y, coord.x + scaleToScreen(dest.width) - 1, coord.y + scaleToScreen(dest.height) - 1,
 			ss.offsetW + ss.spriteW * a.frame, ss.offsetH + ss.spriteH * a.set, ss.offsetW + ss.spriteW * (a.frame + 1) - 1, ss.offsetH + ss.spriteH * (a.set + 1) - 1,
 			null);*/
-		server.addToQueue(a.ss);
-		server.addToQueue(dest.x);
-		server.addToQueue(dest.y);
-		server.addToQueue(dest.x + dest.width - 1);
-		server.addToQueue(dest.y + dest.height - 1);
-		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
-		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
-		server.addToQueue(0);
-		server.addToQueue(0);
-		server.addToQueue(0);
+		
+		int[] message = new int[]{a.ss,
+				dest.x,
+				dest.y,
+				dest.x + dest.width - 1,
+				dest.y + dest.height - 1,
+				a.frame,
+				a.set,
+				0,
+				0,
+				0
+		};
+				
+server.addToQueue(message);
+		
+//		server.addToQueue(a.ss);
+//		server.addToQueue(dest.x);
+//		server.addToQueue(dest.y);
+//		server.addToQueue(dest.x + dest.width - 1);
+//		server.addToQueue(dest.y + dest.height - 1);
+//		server.addToQueue(/*a.ss.offsetW + a.ss.spriteW * */a.frame);
+//		server.addToQueue(/*a.ss.offsetH + a.ss.spriteH * */a.set);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
+//		server.addToQueue(0);
 	}
 	
 	

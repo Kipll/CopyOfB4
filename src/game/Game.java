@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 import levels.Level;
 import levels.TestLevel;
-import network.Listener;
+
 import network.ClientListener;
 import network.Server;
 import network.MainServer;
@@ -143,8 +143,10 @@ public class Game{
 	}
 	
 	public void drawOnViewport(Graphics2D g, Viewport viewport){
+		int[] input = new int[ClientListener.inputSize];
 		for(int i=0;i<ClientListener.inputSize;i++)
-			viewport.server.addToQueue(-1);
+			input[i] = -1;
+		viewport.server.addToQueue(input);
 	
 	
 		viewport.drawRectAbsolute(new Point(0,0), viewport.screenW, viewport.screenH, Color.BLACK, g);

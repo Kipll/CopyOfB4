@@ -8,7 +8,8 @@ import javax.swing.JButton;
 
 import javax.swing.JPanel;
 
-import network.Client;
+
+import network.TCPClient;
 
 import javax.swing.JLabel;
 public class StartMenu 
@@ -61,7 +62,7 @@ public class StartMenu
 						
 				String[] args = new String[] {"localhost", "4444"};
 				menu.dispose();
-				Client.main(args);
+				TCPClient.main(args);
 				
 			}
 		});

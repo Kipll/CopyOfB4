@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import audio.BGM;
-import network.Client;
+
+import network.TCPClient;
 
 /*
  * @author Jack Marshman
@@ -60,8 +61,8 @@ public class Start extends JPanel
 			{
 				click.playOnce();
 				test="find";
-				String[] args = new String[] {"localhost", "4444"};
-				Client.main(args);
+				String[] args = new String[] {"4444", "localhost"};
+				TCPClient.main(args);
 			}
 		});
 		add(btnFindGame);

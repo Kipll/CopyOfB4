@@ -2,8 +2,9 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import network.Sender;
+import network.ServerSender;
 import network.ClientListener;
+import network.ClientSender;
 
 import java.awt.*;
 
@@ -14,7 +15,7 @@ public class ClientWindow extends JPanel{
 	
 	private JFrame frame;
 	
-	public ClientWindow(Sender sender){
+	public ClientWindow(ClientSender sender){
 		super();
 		
 		frame = new JFrame("Hello World");
